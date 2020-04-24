@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WasteData.Domain\WasteData.Domain.csproj" />
+    <ProjectReference Include="..\WasteData.Infra\WasteData.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

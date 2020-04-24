@@ -17,4 +17,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WasteData.Domain\WasteData.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
