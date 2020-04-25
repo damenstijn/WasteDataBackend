@@ -15,12 +15,15 @@ namespace WasteData.Infra.Domain
 
             builder.HasKey(b => b.DownloadTestId);
 
-            builder.Property("TotalBytesDownloaded").HasColumnName("TotalBytesDownloaded").IsRequired();
-            builder.Property("StartDate").HasColumnName("StartDate").IsRequired();
-            builder.Property("EndDate").HasColumnName("EndDate").IsRequired();
-            builder.Property("IsWifi").HasColumnName("IsWifi").IsRequired();
-            builder.Property("CreatedAt").HasColumnName("CreatedAt").IsRequired();
-            builder.Property("IsDeleted").HasColumnName("IsDeleted").IsRequired();
+            builder.Property(p => p.TotalBytesDownloaded).HasColumnName("TotalBytesDownloaded").IsRequired();
+            builder.Property(p => p.StartDate).HasColumnName("StartDate").IsRequired();
+            builder.Property(p => p.EndDate).HasColumnName("EndDate").IsRequired();
+            builder.Property(p => p.IsWifi).HasColumnName("IsWifi").IsRequired();
+            builder.Property(p => p.CreatedAt).HasColumnName("CreatedAt").IsRequired();
+            builder.Property(p => p.IsDeleted).HasColumnName("IsDeleted").IsRequired();
+            builder.Property(p => p.ConnectionName).HasColumnName("ConnectionName").IsRequired();
+            builder.Property(p => p.IpAddress).HasColumnName("IpAddress").IsRequired();
+            builder.Property(p => p.Country).HasColumnName("Country").IsRequired();
 
             builder.HasIndex(p => p.TotalBytesDownloaded);
         }
