@@ -16,9 +16,9 @@ namespace WasteData.Infra.Domain
             builder.HasKey(b => b.DeviceId);
 
             builder.Property(p => p.DeviceGuid).HasColumnName("DeviceGuid").IsRequired();
-            builder.Property(p => p.DeviceName).HasColumnName("DeviceName").IsRequired();
+            builder.Property(p => p.DeviceName).HasColumnName("DeviceName").IsRequired().HasMaxLength(1000);
             builder.Property(p => p.OsId).HasColumnName("OsId").IsRequired();
-            builder.Property(p => p.OsVersion).HasColumnName("OsVersion").IsRequired();
+            builder.Property(p => p.OsVersion).HasColumnName("OsVersion").IsRequired().HasMaxLength(1000);
 
             builder.HasIndex(p => p.DeviceGuid);
 

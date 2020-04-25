@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WasteData.Infra.Database;
 
 namespace WasteData.Infra.Migrations
 {
     [DbContext(typeof(WasteDataContext))]
-    partial class WasteDataContextModelSnapshot : ModelSnapshot
+    [Migration("20200425170652_Added_Device")]
+    partial class Added_Device
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
