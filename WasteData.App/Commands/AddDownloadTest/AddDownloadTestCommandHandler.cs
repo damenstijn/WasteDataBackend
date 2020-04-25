@@ -8,7 +8,7 @@ using WasteData.Infra.Database;
 
 namespace WasteData.App.Commands
 {
-    internal class AddDownloadTestCommandHandler : IRequestHandler<AddDownloadTestCommand, Unit>
+    internal class AddDownloadTestCommandHandler : IRequestHandler<AddDownloadTestCommand>
     {
         private readonly WasteDataContext _wasteDataContext;
 

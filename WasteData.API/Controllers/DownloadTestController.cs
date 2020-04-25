@@ -28,7 +28,16 @@ namespace WasteData.API.Controllers
         [HttpGet]
         public async Task<IEnumerable<DownloadTestDto>> Get()
         {
-            return await _mediator.Send(new GetTop10DownloadTestsQuery());
+            try
+            {
+                return await _mediator.Send(new GetTop10DownloadTestsQuery());
+            }
+            catch (Exception ex) 
+            {
+                _logger.LogError(ex, "Error GetTop10DownloadTestsQuery");
+            }
+
+            return new List<DownloadTestDto>();
         }
 
         [HttpPost]
