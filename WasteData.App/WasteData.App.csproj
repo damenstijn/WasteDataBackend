@@ -9,4 +9,12 @@
     <ProjectReference Include="..\WasteData.Infra\WasteData.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="8.0.1" />
+  </ItemGroup>
+
 </Project>

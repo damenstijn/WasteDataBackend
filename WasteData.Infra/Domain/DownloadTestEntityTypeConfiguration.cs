@@ -21,6 +21,8 @@ namespace WasteData.Infra.Domain
             builder.Property("IsWifi").HasColumnName("IsWifi").IsRequired();
             builder.Property("CreatedAt").HasColumnName("CreatedAt").IsRequired();
             builder.Property("IsDeleted").HasColumnName("IsDeleted").IsRequired();
+
+            builder.HasIndex(p => p.TotalBytesDownloaded);
         }
     }
 }
