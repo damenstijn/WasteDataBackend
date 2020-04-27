@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WasteData.App.Queries.GetTop10DownloadTests
 {
-    public class GetTop10DownloadTestsQuery : IRequest<List<DownloadTestDto>>
+    public class GetTop10DownloadTestsQuery : IRequest<List<GetTop10DownloadTestsDto>>
     {
         
     }

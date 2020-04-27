@@ -9,6 +9,7 @@ namespace WasteData.Infra.Database
     public class WasteDataContext : DbContext
     {
         public DbSet<DownloadTest> DownloadTests { get; set; }
+        public DbSet<Device> Devices { get; set; }
 
         public WasteDataContext(DbContextOptions options) : base(options)
         {
