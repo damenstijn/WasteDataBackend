@@ -12,12 +12,10 @@ namespace WasteData.App.Queries.GetTop10DownloadTests
 {
     internal class GetTop10DownloadTestsQueryHandler : IRequestHandler<GetTop10DownloadTestsQuery, List<GetTop10DownloadTestsDto>>
     {
-        private readonly WasteDataContext _wasteDataContext;
         private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
-        public GetTop10DownloadTestsQueryHandler(WasteDataContext wasteDataContext, ISqlConnectionFactory sqlConnectionFactory)
+        public GetTop10DownloadTestsQueryHandler(ISqlConnectionFactory sqlConnectionFactory)
         {
-            _wasteDataContext = wasteDataContext;
             _sqlConnectionFactory = sqlConnectionFactory;
         }
 
@@ -29,12 +27,12 @@ namespace WasteData.App.Queries.GetTop10DownloadTests
                                 "MAX(d.DeviceName) AS [DeviceName], " +
                                 "MAX(d.DeviceGuid) AS [DeviceGuid], " +
                                 "MAX(dt.Country) AS [Country], " +
-                                "MAX(d.OsId) AS [OsIs] " +
+                                "MAX(d.OsId) AS [OsId] " +
                                 "FROM [DownloadTest] dt " +
                                 "INNER JOIN [Device] d ON d.[DeviceId] = dt.[DeviceId] " +
                                 "GROUP BY d.[DeviceId]";
 
-            var connection = _sqlConnectionFactory.GetOpenConnection();
+            using var connection = _sqlConnectionFactory.GetOpenConnection();
 
             var result = await connection.QueryAsync<GetTop10DownloadTestsDto>(sql);
 

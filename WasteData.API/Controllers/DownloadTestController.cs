@@ -27,26 +27,11 @@ namespace WasteData.API.Controllers
             _mediator = mediator;
         }
 
-        
         /// <summary>
-        /// Get Top 10 download tests
+        /// Add a Download Test
         /// </summary>
+        /// <param name="request"></param>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<IEnumerable<GetTop10DownloadTestsDto>> Get()
-        {
-            //try
-            //{
-                return await _mediator.Send(new GetTop10DownloadTestsQuery());
-            //}
-            //catch (Exception ex) 
-            //{
-            //    _logger.LogError(ex, "Error GetTop10DownloadTestsQuery");
-            //}
-
-            //return new List<GetTop10DownloadTestsDto>();
-        }
-
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<IActionResult> AddDownloadTest([FromBody]AddDownloadTestDto request)
@@ -64,6 +49,29 @@ namespace WasteData.API.Controllers
             return Created(string.Empty, null);
         }
 
+        /// <summary>
+        /// Get Top 10 Download Tests
+        /// </summary>
+        /// <returns>List of Download Tests</returns>
+        [HttpGet]
+        public async Task<IEnumerable<GetTop10DownloadTestsDto>> Get()
+        {
+            try
+            {
+                return await _mediator.Send(new GetTop10DownloadTestsQuery());
+            }
+            catch (Exception ex) 
+            {
+                _logger.LogError(ex, "Error GetTop10DownloadTestsQuery");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get Download Test Rank per device
+        /// </summary>
+        /// <param name="deviceGuid"></param>
+        /// <returns>Ranking position</returns>
         [HttpGet]
         [Route("ranking/{deviceGuid}")]
         public async Task<GetRankingPositionByDeviceIdDto> GetRankingPosition([FromRoute]Guid deviceGuid)
@@ -75,9 +83,8 @@ namespace WasteData.API.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error GetRankingPositionByDeviceIdQuery");
+                throw;
             }
-
-            return new GetRankingPositionByDeviceIdDto { Position = -1 };
         }
     }
 }
