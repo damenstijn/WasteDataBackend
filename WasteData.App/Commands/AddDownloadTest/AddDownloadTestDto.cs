@@ -12,7 +12,6 @@ namespace WasteData.App.Commands
         public bool IsWifi { get; set; }
         public string ConnectionName { get; set; }
         public string IpAddress { get; set; }
-        public string Country { get; set; }
         public Guid DeviceGuid { get; set; }
         public string DeviceName { get; set; }
         public int OsId { get; set; }

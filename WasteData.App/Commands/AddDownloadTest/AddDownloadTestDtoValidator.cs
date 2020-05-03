@@ -15,7 +15,6 @@ namespace WasteData.App.Commands.AddDownloadTest
 			RuleFor(x => x.IsWifi).NotNull();
 			RuleFor(x => x.ConnectionName).NotNull();
 			RuleFor(x => x.IpAddress).NotNull();
-			RuleFor(x => x.Country).NotNull();
 			RuleFor(x => x.DeviceGuid).NotNull();
 			RuleFor(x => x.DeviceName).NotNull();
 			RuleFor(x => x.OsId).NotNull();

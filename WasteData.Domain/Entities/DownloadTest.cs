@@ -17,6 +17,5 @@ namespace WasteData.Domain.Entities
         public string IpAddress { get; set; }
         public string Country { get; set; }
         public Device Device { get; set; }
-        public int DeviceId { get; set; }
     }
 }

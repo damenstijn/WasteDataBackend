@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WasteData.App.Queries.GetRankingPositionByDeviceId
 {
-    internal class GetRankingPositionByDeviceIdQueryHandler : IRequestHandler<GetRankingPositionByDeviceIdQuery, GetRankingPositionByDeviceIdDto>
+    public class GetRankingPositionByDeviceIdQueryHandler : IRequestHandler<GetRankingPositionByDeviceIdQuery, GetRankingPositionByDeviceIdDto>
     {
         private readonly WasteDataContext _wasteDataContext;
 
@@ -21,29 +21,37 @@ namespace WasteData.App.Queries.GetRankingPositionByDeviceId
 
         public async Task<GetRankingPositionByDeviceIdDto> Handle(GetRankingPositionByDeviceIdQuery request, CancellationToken cancellationToken)
         {
-            var bytesForDeviceGuid = await _wasteDataContext.DownloadTests.AsNoTracking()
-                .Where(p => !p.IsDeleted && p.Device.DeviceGuid == request.DeviceGuid)
-                .GroupBy(p => p.Device.DeviceGuid)
-                .Select(p => p.Sum(o => o.TotalBytesDownloaded))
-                .FirstOrDefaultAsync(cancellationToken);
+            long bytesForDeviceGuid = await GetSumOfBytesDownloadedForDevice(request, cancellationToken);
+            int rankingPosition = await GetRanking(bytesForDeviceGuid, cancellationToken);
 
+            return new GetRankingPositionByDeviceIdDto
+            {
+                Position = rankingPosition
+            };
+        }
 
-            var amountOfDevicesRankBeforeDevice = await _wasteDataContext.DownloadTests.AsNoTracking()
+        private async Task<int> GetRanking(long bytesForDeviceGuid, CancellationToken cancellationToken)
+        {
+            return await _wasteDataContext.DownloadTests.AsNoTracking()
                 .Where(p => !p.IsDeleted)
                 .GroupBy(p => p.Device.DeviceGuid)
-                .Select(p => new 
-                { 
+                .Select(p => new
+                {
                     Device = p.Key,
                     TotalBytes = p.Sum(o => o.TotalBytesDownloaded)
                 })
                 .OrderByDescending(p => p.TotalBytes)
                 .Where(p => p.TotalBytes > bytesForDeviceGuid)
                 .CountAsync(cancellationToken);
+        }
 
-            return new GetRankingPositionByDeviceIdDto
-            {
-                Position = amountOfDevicesRankBeforeDevice
-            };
+        private async Task<long> GetSumOfBytesDownloadedForDevice(GetRankingPositionByDeviceIdQuery request, CancellationToken cancellationToken)
+        {
+            return await _wasteDataContext.DownloadTests.AsNoTracking()
+                .Where(p => !p.IsDeleted && p.Device.DeviceGuid == request.DeviceGuid)
+                .GroupBy(p => p.Device.DeviceGuid)
+                .Select(p => p.Sum(o => o.TotalBytesDownloaded))
+                .FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

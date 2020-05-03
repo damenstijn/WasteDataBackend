@@ -14,7 +14,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using WasteData.App.Commands.AddDownloadTest;
+using WasteData.App.Services;
+using WasteData.App.Services.Interfaces;
 using WasteData.Infra.Database;
 
 namespace WasteData.API
@@ -34,6 +37,7 @@ namespace WasteData.API
             services.AddControllers();
             services.AddDbContext<WasteDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<ISqlConnectionFactory>(p => new SqlConnectionFactory(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<IHttpService, HttpService>();
 
             var assembly = AppDomain.CurrentDomain.Load("WasteData.App");
             services.AddMediatR(assembly);
@@ -64,7 +68,7 @@ namespace WasteData.API
                 fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
                 fv.RegisterValidatorsFromAssemblyContaining<AddDownloadTestDtoValidator>();
             });
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
