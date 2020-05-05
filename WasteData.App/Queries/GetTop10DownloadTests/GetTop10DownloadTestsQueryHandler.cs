@@ -10,7 +10,7 @@ using Dapper;
 
 namespace WasteData.App.Queries.GetTop10DownloadTests
 {
-    internal class GetTop10DownloadTestsQueryHandler : IRequestHandler<GetTop10DownloadTestsQuery, List<GetTop10DownloadTestsDto>>
+    public class GetTop10DownloadTestsQueryHandler : IRequestHandler<GetTop10DownloadTestsQuery, List<GetTop10DownloadTestsDto>>
     {
         private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
