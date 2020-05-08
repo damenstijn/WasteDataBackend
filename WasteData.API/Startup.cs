@@ -16,9 +16,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using WasteData.App.Commands.AddDownloadTest;
-using WasteData.App.Services;
-using WasteData.App.Services.Interfaces;
 using WasteData.Infra.Database;
+using WasteData.Infra.Services;
+using WasteData.Infra.Services.Interfaces;
 
 namespace WasteData.API
 {

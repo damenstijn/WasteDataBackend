@@ -3,8 +3,8 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using WasteData.App.Services;
-using WasteData.App.Services.Interfaces;
+using WasteData.Infra.Services;
+using WasteData.Infra.Services.Interfaces;
 using Xunit;
 
 namespace WasteData.Test.Services

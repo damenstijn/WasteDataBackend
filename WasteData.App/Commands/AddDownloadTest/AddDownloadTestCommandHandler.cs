@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using WasteData.Infra.Database;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using WasteData.App.Services.Interfaces;
+using WasteData.Infra.Services.Interfaces;
 
 namespace WasteData.App.Commands
 {

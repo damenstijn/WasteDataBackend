@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using WasteData.App.Services.DTO;
+using WasteData.Infra.Services.DTO;
 
-namespace WasteData.App.Services.Interfaces
+namespace WasteData.Infra.Services.Interfaces
 {
     public interface IHttpService
     {

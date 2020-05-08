@@ -7,9 +7,9 @@ using WasteData.Domain.Entities;
 using WasteData.Infra.Database;
 using Moq;
 using WasteData.App.Commands;
-using WasteData.App.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using WasteData.Infra.Services.Interfaces;
 
 namespace WasteData.Test.Commands
 {

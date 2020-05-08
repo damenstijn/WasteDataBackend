@@ -7,7 +7,7 @@ using WasteData.Domain.Entities;
 using WasteData.Infra.Database;
 using Moq;
 using WasteData.App.Commands;
-using WasteData.App.Services.Interfaces;
+using WasteData.Infra.Services.Interfaces;
 using WasteData.App.Queries.GetRankingPositionByDeviceId;
 
 namespace WasteData.Test.Queries

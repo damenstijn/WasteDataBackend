@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace WasteData.App.Services.DTO
+namespace WasteData.Infra.Services.DTO
 {
     public class IpAddressLookupDto
     {

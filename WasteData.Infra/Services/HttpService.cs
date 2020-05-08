@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using WasteData.App.Services.Interfaces;
-using WasteData.App.Services.DTO;
+using WasteData.Infra.Services.Interfaces;
+using WasteData.Infra.Services.DTO;
 using Microsoft.Extensions.Logging;
 
-namespace WasteData.App.Services
+namespace WasteData.Infra.Services
 {
     public class HttpService : IHttpService
     {
