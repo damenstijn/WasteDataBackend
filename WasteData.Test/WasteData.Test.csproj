@@ -21,7 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\WasteData.API\WasteData.API.csproj" />
     <ProjectReference Include="..\WasteData.App\WasteData.App.csproj" />
-    <ProjectReference Include="..\WasteData.Domain\WasteData.Domain.csproj" />
     <ProjectReference Include="..\WasteData.Infra\WasteData.Infra.csproj" />
   </ItemGroup>
 

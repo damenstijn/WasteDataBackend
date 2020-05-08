@@ -6,6 +6,21 @@ namespace WasteData.Domain.Entities
 {
     public class DownloadTest
     {
+        private DownloadTest() { }
+
+        public DownloadTest(long totalBytesDownloaded, DateTime startDate, DateTime endDate, bool isWifi, string connectionName, string ipAddress, string country)
+        {
+            TotalBytesDownloaded = totalBytesDownloaded;
+            StartDate = startDate;
+            EndDate = endDate;
+            IsWifi = isWifi;
+            ConnectionName = connectionName;
+            IpAddress = ipAddress;
+            Country = country;
+
+            CreatedAt = DateTime.Now;
+        }
+
         public int DownloadTestId { get; set; }
         public long TotalBytesDownloaded { get; set; }
         public DateTime StartDate { get; set; }

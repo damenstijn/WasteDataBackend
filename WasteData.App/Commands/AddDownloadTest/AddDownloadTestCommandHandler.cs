@@ -28,33 +28,30 @@ namespace WasteData.App.Commands
 
             if (device == null) 
             {
-                device = new Domain.Entities.Device
-                {
-                    DeviceGuid = request.DownloadTest.DeviceGuid,
-                    DeviceName = request.DownloadTest.DeviceName,
-                    OsId = request.DownloadTest.OsId,
-                    OsVersion = request.DownloadTest.OsVersion
-                };
+                device = new Domain.Entities.Device(
+                    request.DownloadTest.DeviceGuid, 
+                    request.DownloadTest.DeviceName, 
+                    request.DownloadTest.OsId, 
+                    request.DownloadTest.OsVersion);
 
-                _wasteDataContext.Devices.Add(device);
+                _wasteDataContext.Add(device);
                 _wasteDataContext.SaveChanges();
             }
 
 
             var country = _httpService.GetCountryByIpAddress(request.DownloadTest.IpAddress).Result;
 
-            _wasteDataContext.DownloadTests.Add(new Domain.Entities.DownloadTest 
-            {
-                CreatedAt = DateTime.Now,
-                EndDate = request.DownloadTest.EndDate,
-                StartDate = request.DownloadTest.StartDate,
-                IsWifi = request.DownloadTest.IsWifi,
-                TotalBytesDownloaded = request.DownloadTest.TotalBytesDownloaded,
-                ConnectionName = request.DownloadTest.ConnectionName,
-                Country = country,
-                IpAddress = request.DownloadTest.IpAddress,
-                Device = device
-            });
+            var downloadTest = new Domain.Entities.DownloadTest(
+                request.DownloadTest.TotalBytesDownloaded, 
+                request.DownloadTest.StartDate, 
+                request.DownloadTest.EndDate, 
+                request.DownloadTest.IsWifi, 
+                request.DownloadTest.ConnectionName, 
+                request.DownloadTest.IpAddress, 
+                country);
+
+
+            device.AddDownloadTest(downloadTest);
 
             _wasteDataContext.SaveChanges();
 

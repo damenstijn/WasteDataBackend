@@ -47,7 +47,7 @@ namespace WasteData.Test.Commands
             AddDownloadTestCommandHandler addDownloadTestCommandHandler = new AddDownloadTestCommandHandler(context, httpService.Object);
 
             await addDownloadTestCommandHandler.Handle(command, new System.Threading.CancellationToken());
-
+            
             var device = context.Devices.Include(p => p.DownloadTests).SingleOrDefault(p => p.DeviceGuid == newDeviceGuid);
 
             Assert.NotNull(device);

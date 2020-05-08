@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WasteData.Domain\WasteData.Domain.csproj" />
     <ProjectReference Include="..\WasteData.Infra\WasteData.Infra.csproj" />
   </ItemGroup>
 

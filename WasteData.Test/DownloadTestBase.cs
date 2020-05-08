@@ -28,23 +28,9 @@ namespace WasteData.Test
             // Insert seed data into the database using one instance of the context
             using var context = new WasteDataContext(options);
 
-            var device1 = new Device
-            {
-                DeviceGuid = Guid.Parse(Device1Guid),
-                DeviceId = 99901,
-                DeviceName = "OnePlus",
-                OsId = 0,
-                OsVersion = "10"
-            };
 
-            var device2 = new Device
-            {
-                DeviceGuid = Guid.Parse(Device2Guid),
-                DeviceId = 99902,
-                DeviceName = "OnePlus",
-                OsId = 0,
-                OsVersion = "10"
-            };
+            var device1 = new Device(Guid.Parse(Device1Guid), "OnePlus", 0, "10");
+            var device2 = new Device(Guid.Parse(Device1Guid), "OnePlus", 0, "10");
 
             context.Devices.Add(device1);
             context.Devices.Add(device2);
@@ -53,34 +39,16 @@ namespace WasteData.Test
 
             for (int i = 0; i < 5; i++)
             {
-                context.DownloadTests.Add(new DownloadTest
-                {
-                    DownloadTestId = 100 + i,
-                    StartDate = DateTime.Now.AddMinutes(i),
-                    EndDate = DateTime.Now.AddMinutes(i - 2),
-                    Country = "BE",
-                    IpAddress = "192.168.0.1",
-                    IsDeleted = false,
-                    IsWifi = false,
-                    TotalBytesDownloaded = ((20 + i) * 1024 * 1024),
-                    Device = device1
-                });
+                var totalBytesDownloaded = ((20 + i) * 1024 * 1024);
+                var downloadTest = new DownloadTest(totalBytesDownloaded, DateTime.Now.AddMinutes(i), DateTime.Now.AddMinutes(i - 2), false, "", "192.168.0.123", "BE");
+                device1.AddDownloadTest(downloadTest);
             }
 
             for (int i = 0; i < 5; i++)
             {
-                context.DownloadTests.Add(new DownloadTest
-                {
-                    DownloadTestId = 200 + i,
-                    StartDate = DateTime.Now.AddMinutes(i),
-                    EndDate = DateTime.Now.AddMinutes(i - 2),
-                    Country = "BE",
-                    IpAddress = "192.168.0.1",
-                    IsDeleted = false,
-                    IsWifi = false,
-                    TotalBytesDownloaded = ((10 + i) * 1024 * 1024),
-                    Device = device2
-                });
+                var totalBytesDownloaded = ((10 + i) * 1024 * 1024);
+                var downloadTest = new DownloadTest(totalBytesDownloaded, DateTime.Now.AddMinutes(i), DateTime.Now.AddMinutes(i - 2), false, "", "192.168.0.123", "BE");
+                device1.AddDownloadTest(downloadTest);
             }
 
             context.SaveChanges();

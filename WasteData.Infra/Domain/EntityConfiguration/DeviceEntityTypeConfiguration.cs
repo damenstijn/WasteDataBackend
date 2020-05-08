@@ -23,6 +23,10 @@ namespace WasteData.Infra.Domain
             builder.HasIndex(p => p.DeviceGuid);
 
             builder.HasMany(p => p.DownloadTests).WithOne(p => p.Device).IsRequired();
+
+            builder.Metadata
+                .FindNavigation(nameof(Device.DownloadTests))
+                .SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }
