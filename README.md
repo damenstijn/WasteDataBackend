@@ -2,7 +2,7 @@
 
 ## .NET Core API
 
-**.NET Core** REST API application implemented with
+**.NET Core 3.1** REST API application implemented with
 - **Clean Architecture**
 - **CQRS** and **MediatR** library
 - **EF Core** - Code First Migrations
