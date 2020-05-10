@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WasteData.App.Interfaces;
 using WasteData.Domain.Entities;
 
 namespace WasteData.Infra.Database
 {
-    public class WasteDataContext : DbContext
+    public class WasteDataContext : DbContext, IWasteDataContext
     {
         public DbSet<DownloadTest> DownloadTests { get; set; }
         public DbSet<Device> Devices { get; set; }

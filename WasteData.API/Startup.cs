@@ -15,10 +15,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using WasteData.App;
 using WasteData.App.Commands.AddDownloadTest;
-using WasteData.Infra.Database;
-using WasteData.Infra.Services;
-using WasteData.Infra.Services.Interfaces;
+using WasteData.Infra;
 
 namespace WasteData.API
 {
@@ -35,12 +34,8 @@ namespace WasteData.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<WasteDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddTransient<ISqlConnectionFactory>(p => new SqlConnectionFactory(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddTransient<IHttpService, HttpService>();
-
-            var assembly = AppDomain.CurrentDomain.Load("WasteData.App");
-            services.AddMediatR(assembly);
+            services.AddApplication();
+            services.AddInfrastructure(Configuration);
 
             services.AddCors(options => options.AddPolicy("Default", builder =>
             {

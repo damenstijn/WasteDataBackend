@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using MediatR;
-using WasteData.Domain.Entities;
 using WasteData.Infra.Database;
 using Moq;
-using WasteData.App.Commands;
-using WasteData.Infra.Services.Interfaces;
 using WasteData.App.Queries.GetRankingPositionByDeviceId;
 
 namespace WasteData.Test.Queries

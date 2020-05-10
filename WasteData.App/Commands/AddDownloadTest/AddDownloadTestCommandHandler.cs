@@ -4,19 +4,18 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using WasteData.Infra.Database;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using WasteData.Infra.Services.Interfaces;
+using WasteData.App.Interfaces;
 
 namespace WasteData.App.Commands
 {
     public class AddDownloadTestCommandHandler : IRequestHandler<AddDownloadTestCommand>
     {
-        private readonly WasteDataContext _wasteDataContext;
+        private readonly IWasteDataContext _wasteDataContext;
         private readonly IHttpService _httpService;
 
-        public AddDownloadTestCommandHandler(WasteDataContext wasteDataContext, IHttpService httpService)
+        public AddDownloadTestCommandHandler(IWasteDataContext wasteDataContext, IHttpService httpService)
         {
             _wasteDataContext = wasteDataContext;
             _httpService = httpService;
@@ -35,7 +34,7 @@ namespace WasteData.App.Commands
                     request.DownloadTest.OsVersion);
 
                 _wasteDataContext.Add(device);
-                _wasteDataContext.SaveChanges();
+                _wasteDataContext.SaveChangesAsync(cancellationToken);
             }
 
 
@@ -53,7 +52,7 @@ namespace WasteData.App.Commands
 
             device.AddDownloadTest(downloadTest);
 
-            _wasteDataContext.SaveChanges();
+            _wasteDataContext.SaveChangesAsync(cancellationToken);
 
             return Task.FromResult(Unit.Value);
         }

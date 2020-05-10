@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace WasteData.Infra.Database
+namespace WasteData.App.Interfaces
 {
     public interface ISqlConnectionFactory
     {

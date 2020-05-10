@@ -15,16 +15,12 @@ namespace WasteData.API.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [ApiVersion("1.0")]
-    public class DownloadTestController : ControllerBase
+    public class DownloadTestController : BaseController
     {
-
-        private readonly ILogger<DownloadTestController> _logger;
-        private readonly IMediator _mediator;
-
-        public DownloadTestController(ILogger<DownloadTestController> logger, IMediator mediator)
+        protected readonly ILogger<DownloadTestController> _logger;
+        public DownloadTestController(ILogger<DownloadTestController> logger, IMediator mediator) : base(mediator)
         {
             _logger = logger;
-            _mediator = mediator;
         }
 
         /// <summary>

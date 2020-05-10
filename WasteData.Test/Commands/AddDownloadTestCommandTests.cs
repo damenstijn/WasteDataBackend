@@ -9,7 +9,7 @@ using Moq;
 using WasteData.App.Commands;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using WasteData.Infra.Services.Interfaces;
+using WasteData.App.Interfaces;
 
 namespace WasteData.Test.Commands
 {

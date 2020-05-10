@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Text;
-using WasteData.Infra.Database;
 
 namespace WasteData.Domain.Entities
 {
     public class Device
     {
-        private Device() { }
+        private Device()
+        {
+            _downloadTests = new List<DownloadTest>();
+        }
 
         public Device(Guid deviceGuid, string deviceName, int osId, string osVersion)
         {

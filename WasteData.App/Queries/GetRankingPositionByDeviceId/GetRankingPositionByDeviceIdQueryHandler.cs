@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using WasteData.Infra.Database;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using WasteData.App.Interfaces;
 
 namespace WasteData.App.Queries.GetRankingPositionByDeviceId
 {
     public class GetRankingPositionByDeviceIdQueryHandler : IRequestHandler<GetRankingPositionByDeviceIdQuery, GetRankingPositionByDeviceIdDto>
     {
-        private readonly WasteDataContext _wasteDataContext;
+        private readonly IWasteDataContext _wasteDataContext;
 
-        public GetRankingPositionByDeviceIdQueryHandler(WasteDataContext wasteDataContext)
+        public GetRankingPositionByDeviceIdQueryHandler(IWasteDataContext wasteDataContext)
         {
             _wasteDataContext = wasteDataContext;
         }

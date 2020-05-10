@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using WasteData.Infra.Services.Interfaces;
 using WasteData.Infra.Services.DTO;
 using Microsoft.Extensions.Logging;
+using WasteData.App.Interfaces;
 
 namespace WasteData.Infra.Services
 {
