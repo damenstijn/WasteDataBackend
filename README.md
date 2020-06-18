@@ -1,5 +1,7 @@
 # WasteData Service
 
+A .NET Core/Xamarin application to play with and learn new technologies.
+
 ## .NET Core API
 
 **.NET Core 3.1** REST API application implemented with
